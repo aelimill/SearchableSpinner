@@ -127,6 +127,16 @@ public class SearchableSpinner extends Spinner implements View.OnTouchListener,
         }
     }
 
+    public void setSelectedItemPosition(int position) {
+        if (position != NO_ITEM_SELECTED) {
+            if (!_isDirty) {
+                _isDirty = true;
+                setAdapter(_arrayAdapter);
+                super.setSelection(position);
+            }
+        }
+    }
+
     public void setTitle(String strTitle) {
         _searchableListDialog.setTitle(strTitle);
     }
@@ -135,11 +145,13 @@ public class SearchableSpinner extends Spinner implements View.OnTouchListener,
         _searchableListDialog.setPositiveButton(strPositiveButtonText);
     }
 
-    public void setPositiveButton(String strPositiveButtonText, DialogInterface.OnClickListener onClickListener) {
+    public void setPositiveButton(String strPositiveButtonText, DialogInterface.OnClickListener
+            onClickListener) {
         _searchableListDialog.setPositiveButton(strPositiveButtonText, onClickListener);
     }
 
-    public void setOnSearchTextChangedListener(SearchableListDialog.OnSearchTextChanged onSearchTextChanged) {
+    public void setOnSearchTextChangedListener(SearchableListDialog.OnSearchTextChanged
+                                                       onSearchTextChanged) {
         _searchableListDialog.setOnSearchTextChangedListener(onSearchTextChanged);
     }
 
